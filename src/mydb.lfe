@@ -1,4 +1,4 @@
-(defmodule mydb-server
+(defmodule mydb
   (export (start 0)
           (stop 0)))
 
