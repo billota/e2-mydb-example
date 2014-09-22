@@ -14,12 +14,13 @@
   (dispatch-client (wait-for-client socket))
   `#(repeat ,socket))
 
-(defun listen (_port)
-  'fake-listen-socket)
-
-(defun wait-for-client (_socket)
-  (timer:sleep 5000)
-  'fake-client-socket)
+(defun listen (port)
+  (let ((`#(ok ,socket) (gen_tcp:listen port '(#(reuseaddr true)))))
+    socket))
+    
+(defun wait-for-client (socket)
+  (let ((`#(ok ,client) (gen_tcp:accept socket)))
+    client))
 
 (defun dispatch-client (client)
   (io:format "TODO: dispatch client ~p~n" (list client)))
