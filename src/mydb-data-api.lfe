@@ -11,7 +11,13 @@
   (dets:insert db `#(,key ,value)))
 
 (defun get (db key)
-  (dets:lookup db key))
+  (handle-dets-lookup (dets:lookup db key)))
 
 (defun del (db key)
   (dets:delete db key))
+
+(defun handle-dets-lookup
+  ((`(#(,_ ,value)))
+   `#(ok ,value))
+  ((())
+   'error))
