@@ -2,10 +2,8 @@
   (behaviour e2_application)
   (export (init 0)))
 
-;;;===================================================================
-;;; e2_application callbacks
-;;;===================================================================
-
 (defun init ()
-  (e2_log:info "TODO: configure top-level processes for your app")
-  #(ok ()))
+  (let ((port (mydb-config:get 'port))
+        (dbfile (mydb-config:get 'dbfile)))
+    `#(ok (#(mydb-data-svc start_link (,dbfile))
+           #(mydb-server start_link (,port))))))

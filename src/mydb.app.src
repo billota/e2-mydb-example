@@ -31,7 +31,17 @@
   {mod, {e2_application, ['mydb-app']}},
 
   %% configuration parameters similar to those in the config file specified
-  %% on the command line. can be fetched with gas:get_env
-  {env, []}
- ]
-}.
+  %% on the command line. can be fetched with application:get_env
+  {env, [{dev,   [{port, 1234},
+                  {dbfile, "/tmp/data.db"}]},
+         {stage, [{port, 2345},
+                  {dbfile, "/tmp/staging-data.db"}]},
+         {prod,  [{port, 3456},
+                  {dbfile, "/tmp/prod-data.db"}]},
+         %% Comment out the ones you don't want to use, and uncomment the value
+         %% for the current environment.
+         {'current-env', prod}
+         %{'current-env', stage}
+         %{'current-env', dev}
+         ]}
+ ]}.
