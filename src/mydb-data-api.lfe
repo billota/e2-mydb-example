@@ -4,8 +4,8 @@
           (get 2)
           (del 2)))
 
-(defun open (file)
-  (dets:open_file file '()))
+(defun open (filepath)
+  (dets:open_file filepath '()))
 
 (defun put (db key value)
   (dets:insert db `#(,key ,value)))
