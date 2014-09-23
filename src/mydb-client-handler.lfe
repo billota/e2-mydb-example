@@ -55,14 +55,14 @@
    `#(,key ,val)))
 
 (defun db-get (key)
-  `#(ok ,(++ "You asked for " key)))
+  (mydb-data-svc:get key))
 
 (defun db-put
-  ((`#(,_key ,_val))
-    'ok))
+  ((`#(,key ,value))
+    (mydb-data-svc:put key value)))
 
 (defun db-del (key)
-  'ok)
+  (mydb-data-svc:del key))
 
 (defun handle-reply (reply socket)
   (send-reply reply socket)
