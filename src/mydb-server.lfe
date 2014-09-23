@@ -23,4 +23,4 @@
     client))
 
 (defun dispatch-client (client)
-  (io:format "TODO: dispatch client ~p~n" (list client)))
+  (mydb-client-handler:start_link client))
