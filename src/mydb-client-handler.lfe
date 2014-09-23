@@ -8,8 +8,18 @@
   (e2_task:start_link (MODULE) socket))
 
 (defun handle_task (socket)
-  (gen_tcp:send socket "Hej och adjö!\r\n")
-  '#(stop normal))
+  (handle-command-line (read-line socket) socket))
+
+(defun read-line (socket)
+    (inet:setopts socket '(#(active false) #(packet line)))
+    (gen_tcp:recv socket 0))
+
+(defun handle-command-line
+  ((`#(ok ,data) socket)
+    (io:format "### Got ~p from client~n" (list data))
+    `#(repeat ,socket))
+  ((`#(error ,err) _socket)
+   `#(stop #(socket-err ,err))))
 
 (defun terminate (_reason socket)
   (gen_tcp:close socket))
