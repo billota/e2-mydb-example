@@ -23,4 +23,4 @@
     client))
 
 (defun dispatch-client (client)
-  (mydb-client-handler:start_link client))
+  (mydb-client-handler-sup:start_handler client))

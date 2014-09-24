@@ -6,4 +6,5 @@
   (let ((port (mydb-config:get 'port))
         (dbfile (mydb-config:get 'dbfile)))
     `#(ok (#(mydb-data-svc start_link (,dbfile))
+           #(mydb-client-handler-sup (supervisor))
            #(mydb-server start_link (,port))))))
