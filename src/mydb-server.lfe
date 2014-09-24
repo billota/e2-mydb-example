@@ -17,7 +17,7 @@
 (defun listen (port)
   (let ((`#(ok ,socket) (gen_tcp:listen port '(#(reuseaddr true)))))
     socket))
-    
+
 (defun wait-for-client (socket)
   (let ((`#(ok ,client) (gen_tcp:accept socket)))
     client))

@@ -75,7 +75,7 @@
    (gen_tcp:send socket "+OK\r\n"))
   (('error socket)
    (gen_tcp:send socket "-ERROR\r\n")))
-    
+
 (defun terminate (_reason socket)
   (gen_tcp:close socket))
 
