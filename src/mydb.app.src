@@ -38,8 +38,8 @@
                   {dbfile, "/tmp/staging-data.db"}]},
          {prod,  [{port, 3456},
                   {dbfile, "/tmp/prod-data.db"}]},
-         %% Comment out the ones you don't want to use, and uncomment the value
-         %% for the current environment.
+         %% Comment out the ones you don't want to use, and uncomment the
+         %% value for the current environment.
          {'current-env', prod}
          %{'current-env', stage}
          %{'current-env', dev}
